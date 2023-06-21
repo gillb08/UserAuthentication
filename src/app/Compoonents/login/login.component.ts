@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -11,9 +11,7 @@ export class LoginComponent {
   isText: boolean = false;
   eyeIcon:  string ="fa-eye-slash"; 
   loginForm! : FormGroup;
-  constructor(private fb: FormBuilder){
-
-  }
+  constructor(private fb: FormBuilder){}
 
   ngOninit(): void {
     this.loginForm = this.fb.group({
@@ -26,5 +24,17 @@ export class LoginComponent {
     this.isText = !this.isText;  
     this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
+  }
+  onSubmit(){
+    if(this.loginForm.valid){
+      console.log(this.loginForm.value)
+      //send the obj to database
+    }
+    else{
+      console.log("FOorm not valid");
+      
+
+      //throw the error using toaster and with required field
+    }
   }
 }

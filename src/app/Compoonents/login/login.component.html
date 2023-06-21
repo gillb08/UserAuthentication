@@ -15,26 +15,29 @@
                             <div class="form-group pt-3">
                                 <div class="input-field">
                                     <span class="fa fa-user p-2"></span>
-                                    <input FormControlName = "Username" type="text" placeholder="Username">
+                                    <input formControlName="username" type="text" placeholder="Username">
                                 </div>
                             </div>
-                            <small class="text-danger">"Username is required"</small>
+                            
+                            <small *ngIf="loginForm.controls['username'].dirty && loginForm.hasError('required','username')" class="text-danger">
+                                Username is required
+                            </small>
                             <div class="form-group pt-1 ">
                                 <div class="input-field">
                                     <span class="fa fa-lock p-2"></span>
-                                    <input FormControlName = "password" [type]="type" placeholder="password">
+                                    <input formControlName="password" [type]="type" placeholder="password">
                                     <span (click)="hideShowPass()" class="fa {eye-Icon}"></span>
                                 </div> 
                             </div>
-                            <small class="text-danger">"Password is required"</small>
-                             <div class="form-inline fr mt-4">
+                            <small  *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')" class="text-danger">Password is required</small>
+                             <div class="form-inline fr mt-4"> 
                                   <a id="forget" class="Font-weight-bold">Forgot Password</a>
                              </div> 
-                            <button class="btn btn-primary btn-blocK mt-4 w-100">login</button>
+                            <button [disabled]="loginForm.invalid" class="btn btn-primary btn-blocK mt-4 w-100">login</button>
                             <div class="text-center pt-4 w-100">Dont't Have an Account? <a id="Forget" routerLink = "/signup">Sign Up</a></div>
                             <div class="mx-3 my-2 py-2 bordert">
                                 <!-- add facebook, git hub and Gmail account logor -->
-                            </div>
+                            </div> 
                         </form>
                     </div>
                 </div>
